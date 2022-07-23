@@ -139,3 +139,13 @@ text-decoration: none;
 .search-form:focus-within .search-button {
   color: var(--color-primary);
 }
+
+.main-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background: var(--neutral-color-2);
+  color: var(--neutral-color-0);
+  padding: var(--spacing-gutter-medium);
+}
