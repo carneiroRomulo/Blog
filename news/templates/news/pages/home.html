@@ -2,5 +2,13 @@
 
 {% block title %} Home {% endblock title %}
 {% block content %}
-<h1>Hello World</h1>
+    <div class="main-content main-content-list container">
+        {% for news in news_list %}
+            {% include "news/partials/news.html" %}
+            {% empty %}
+                <div class="center">
+                    <h1>No News Available</h1>
+                </div>
+        {% endfor %}
+    </div>
 {% endblock content %}

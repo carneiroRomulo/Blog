@@ -7,5 +7,10 @@ app_name = 'news'
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('', views.home, name='search'),
+    path('search/', views.home, name='search'),
+    path(
+        'category/<str:category_name>/',
+        views.home,
+        name="category"
+    ),
 ]
