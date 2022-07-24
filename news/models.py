@@ -26,23 +26,24 @@ class News(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
-    cover = models.ImageField(upload_to='news/covers/%Y/%m/%d/')
+    cover = models.ImageField(
+        upload_to='news/covers/%Y/%m/%d/', blank=True, default='')
 
     category = models.ForeignKey(
-        Category, on_delete=models.SET_NULL, null=True)
+        Category, on_delete=models.PROTECT)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     title = models.CharField(
         max_length=64,
         validators=[
-            MinLengthValidator(12),
+            MinLengthValidator(6),
             MaxLengthValidator(64),
         ]
     )
     description = models.CharField(
         max_length=100,
         validators=[
-            MinLengthValidator(0),
+            MinLengthValidator(12),
             MaxLengthValidator(100),
         ]
     )
