@@ -35,8 +35,8 @@ class NewsModelTest(NewsTestBase):
             cover='cover.png',
             category=self.make_category(name='Test Default Category'),
             author=self.make_author(username='newuser'),
-            title='Recipe Title',
-            description='Recipe Description',
+            title='News Title',
+            description='News Description',
             body='A' * 100,
         )
         news.full_clean()
