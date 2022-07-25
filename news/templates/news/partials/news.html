@@ -1,41 +1,41 @@
 <div class="news news-list-item">
     <div class="news-cover">
-        
         {% if not news.cover %}
-            <a href="https://placeholder.com"><img src="https://via.placeholder.com/300x200"></a>
+            <a href="https://placeholder.com"><img src="https://via.placeholder.com/250x350"></a>
         {% else %}
-            <img src={{ news.cover.url }} alt="Temporário">
+            <img src="{{ news.cover.url }}" alt="Temporário">
         {% endif %}
     </div>
-    <div>
-        <div class="news-title-container">
-            <h2 class="news-title">{{ news.title }}</h2>
-        </div>
-    
-        <div class="news-author">           
-            <span class="news-author-item">
-                <i class="fas fa-calendar-alt">
-                    {{ news.created_at|date:"d/m/Y"}}
-                </i>
-            </span>
-            {% if news.author is not None %}
+    <div class="news-content">
+        <div class="news-content-item">
+            <div class="news-title-container">
+                <h2 class="news-title">{{ news.title }}</h2>
+            </div>
+        
+            <div class="news-author">           
                 <span class="news-author-item">
-                    <i class="fas fa-user"></i>
-                    {{ news.author.first_name }} {{ news.author.last_name }}
+                    <i class="fas fa-calendar-alt">
+                        {{ news.created_at|date:"d/m/Y"}}
+                    </i>
                 </span>
-            {% endif %}
-            {% if news.category is not None %}
-                <span class="news-author-item">
-                    <a href={% url "news:category" news.category.name %}>
-                        <i class="fas fa-layer-group"></i>
-                        <span>{{ news.category.name }}</span>
-                    </a>
-                </span>
-            {% endif %}
+                {% if news.author is not None %}
+                    <span class="news-author-item">
+                        <i class="fas fa-user"></i>
+                        {{ news.author.first_name }} {{ news.author.last_name }}
+                    </span>
+                {% endif %}
+                {% if news.category is not None %}
+                    <span class="news-author-item">
+                        <a href={% url "news:category" news.category.name %}>
+                            <i class="fas fa-layer-group"></i>
+                            <span>{{ news.category.name }}</span>
+                        </a>
+                    </span>
+                {% endif %}
+            </div>
+        
+            <p class="news-description">{{ news.description }}</p>
         </div>
-    
-        <p class="news-content">{{ news.description }}</p>
-    
         {% if not is_detail_page %}
             <footer class="news-footer">
                 <a href="">
