@@ -4,6 +4,12 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxLengthValidator, MinLengthValidator
 from django.db import models
 
+STATUS_CHOICES = [
+    ('d', 'Draft'),
+    ('p', 'Published'),
+    ('w', 'Withdrawn'),
+]
+
 
 class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -26,6 +32,7 @@ class News(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     cover = models.ImageField(
         upload_to='news/covers/%Y/%m/%d/', blank=True, default='')
 
@@ -40,14 +47,14 @@ class News(models.Model):
             MaxLengthValidator(64),
         ]
     )
-    description = models.CharField(
-        max_length=100,
+    description = models.TextField(
+        max_length=200,
         validators=[
-            MinLengthValidator(12),
-            MaxLengthValidator(100),
+            MinLengthValidator(50),
+            MaxLengthValidator(200),
         ]
     )
-    body = models.CharField(
+    body = models.TextField(
         max_length=5000,
         validators=[
             MinLengthValidator(100),

@@ -4,7 +4,7 @@ from .models import News
 
 
 def home(request):
-    news_list = News.objects.all()
+    news_list = News.objects.filter(status='p')
     return render(request, 'news/pages/home.html', context={
         'news_list': news_list,
     })
